@@ -6,10 +6,11 @@
     <result column="lastName" jdbcType="VARCHAR" property="lastname" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="gender" jdbcType="INTEGER" property="gender" />
-    <result column="department" jdbcType="VARCHAR" property="department" />
+    <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+    <result column="birth" jdbcType="DATE" property="birth" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, lastName, email, gender, department
+    id, lastName, email, gender, departmentId, birth
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -23,9 +24,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.demo001.pojo.Employee" useGeneratedKeys="true">
     insert into Employee (lastName, email, gender, 
-      department)
+      departmentId, birth)
     values (#{lastname,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
-      #{department,jdbcType=VARCHAR})
+      #{departmentid,jdbcType=INTEGER}, #{birth,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.demo001.pojo.Employee" useGeneratedKeys="true">
     insert into Employee
@@ -39,8 +40,11 @@
       <if test="gender != null">
         gender,
       </if>
-      <if test="department != null">
-        department,
+      <if test="departmentid != null">
+        departmentId,
+      </if>
+      <if test="birth != null">
+        birth,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -53,8 +57,11 @@
       <if test="gender != null">
         #{gender,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        #{department,jdbcType=VARCHAR},
+      <if test="departmentid != null">
+        #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -70,8 +77,11 @@
       <if test="gender != null">
         gender = #{gender,jdbcType=INTEGER},
       </if>
-      <if test="department != null">
-        department = #{department,jdbcType=VARCHAR},
+      <if test="departmentid != null">
+        departmentId = #{departmentid,jdbcType=INTEGER},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -81,7 +91,8 @@
     set lastName = #{lastname,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=INTEGER},
-      department = #{department,jdbcType=VARCHAR}
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      birth = #{birth,jdbcType=DATE}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

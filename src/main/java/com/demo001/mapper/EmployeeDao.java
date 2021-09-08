@@ -2,7 +2,8 @@ package com.demo001.mapper;
 
 import com.demo001.pojo.Employee;
 
-public interface EmployeeDao {
+public interface
+EmployeeDao {
     int deleteByPrimaryKey(Integer id);
 
     int insert(Employee record);

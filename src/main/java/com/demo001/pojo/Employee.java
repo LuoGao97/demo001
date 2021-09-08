@@ -1,6 +1,7 @@
 package com.demo001.pojo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,7 +26,9 @@ public class Employee implements Serializable {
      */
     private Integer gender;
 
-    private String department;
+    private Integer departmentid;
+
+    private Date birth;
 
     private static final long serialVersionUID = 1L;
 }
